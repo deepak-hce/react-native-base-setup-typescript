@@ -1,15 +1,8 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Form from './src/components/Form';
 import {
+  ButtonColorSchemes,
   ButtonTypes,
   FieldTypes,
   IconType,
@@ -19,6 +12,7 @@ import {
 } from './src/interfaces/global';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomIcon from './src/components/CustomIcon';
+import MainScreen from './src/screens/MainScreen';
 
 const App = () => {
   const formInput1: IFormParams = {
@@ -26,6 +20,7 @@ const App = () => {
     submitButton: {
       buttonName: 'Submit',
       loader: true,
+      buttonColor: ButtonColorSchemes.PRIMARY,
       function: loaderStatus => {
         setTimeout(() => {
           loaderStatus(false);
@@ -83,37 +78,11 @@ const App = () => {
     iconType: IconType.ANT_DESIGN,
   };
 
-  return (
-    <ScrollView>
-      <View style={styles.container}>
-        <Text>
-          <CustomIcon {...rocketIcon}> </CustomIcon>
-        </Text>
-      </View>
-    </ScrollView>
-  );
+  return <MainScreen></MainScreen>;
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#F9FAFF',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+  container: {},
 });
 
 export default App;

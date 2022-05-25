@@ -8,7 +8,12 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-import {IButtonParams} from '../interfaces/global';
+import {colors} from '../constants/colors';
+import {
+  ButtonColorSchemes,
+  ButtonTypes,
+  IButtonParams,
+} from '../interfaces/global';
 
 const CustomButton = (buttonInput: IButtonParams) => {
   const [loader, loaderStatus] = useState(false);
@@ -23,7 +28,19 @@ const CustomButton = (buttonInput: IButtonParams) => {
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={handleSubmit}>
+    <TouchableOpacity
+      style={{
+        ...styles.container,
+        backgroundColor:
+          buttonInput.buttonType === ButtonTypes.FILL &&
+          buttonInput.buttonColor === ButtonColorSchemes.PRIMARY
+            ? colors.primaryButtonColor
+            : buttonInput.buttonType === ButtonTypes.FILL &&
+              buttonInput.buttonColor === ButtonColorSchemes.SECONDARY
+            ? colors.secondaryButtonColor
+            : undefined,
+      }}
+      onPress={handleSubmit}>
       <View style={styles.mainContainer}>
         <Text style={styles.text}> {buttonInput.buttonName} </Text>
 
@@ -43,8 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 5,
-    backgroundColor: '#4630EB',
+    borderRadius: 10,
   },
   mainContainer: {
     display: 'flex',
@@ -57,6 +73,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

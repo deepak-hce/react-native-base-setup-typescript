@@ -1,5 +1,3 @@
-import {GestureResponderEvent} from 'react-native';
-
 export interface IApiParams {
   url: string;
   requestMethod: RequestMethod;
@@ -28,6 +26,8 @@ export interface IFormFieldParams {
   passwordVisibility?: boolean;
   children?: React.ReactNode;
   change?: Function;
+  width?: number;
+  prefixIcon?: IIconParams;
 }
 
 export interface IFormFieldValidators {
@@ -61,11 +61,17 @@ export interface IButtonParams {
   buttonType: ButtonTypes;
   function: (loaderStatusCallback: any) => void;
   loader?: boolean;
+  buttonColor: ButtonColorSchemes;
 }
 
 export enum ButtonTypes {
   OUTLINE = 'OUTLINE',
   FILL = 'FILL',
+}
+
+export enum ButtonColorSchemes {
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
 }
 
 export interface IIconParams {
@@ -78,4 +84,13 @@ export interface IIconParams {
 export enum IconType {
   FONT_AWESOME = 'FONT_AWESOME',
   ANT_DESIGN = 'ANT_DESIGN',
+}
+
+export interface NavigationProps {
+  navigation: any;
+  route: {
+    key: string;
+    name: string;
+    params: any;
+  };
 }
